@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown Timer</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #282c34;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        .timer-container {
+            text-align: center;
+        }
+
+        #timer {
+            font-size: 5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="timer-container">
+        <h1 id="timer">10</h1>
+    </div>
+
+    <script>
+        let timeLeft = 10;
+        let interval;
+        const timerElement = document.getElementById('timer');
+
+        function startTimer() {
+            interval = setInterval(() => {
+                if (timeLeft > 0) {
+                    timeLeft--;
+                    timerElement.textContent = timeLeft;
+                } else {
+                    clearInterval(interval);
+                    timerElement.textContent = "Time's up!";
+                }
+            }, 1000);
+        }
+
+        function resetTimer() {
+            clearInterval(interval);
+            timeLeft = 10;
+            timerElement.textContent = timeLeft;
+        }
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') {
+                if (interval) {
+                    resetTimer();
+                } else {
+                    resetTimer();
+                    startTimer();
+                }
+            }
+        });
+
+        startTimer();
+    </script>
+</body>
+</html>
